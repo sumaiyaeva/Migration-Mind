@@ -63,112 +63,121 @@ export default function Login() {
     }
   };
 
-  
+  {/* UI updated - login page */}
+
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100 px-4">
-      <div className="max-w-md w-full space-y-6 p-8 bg-white rounded-lg shadow-lg">
-        <div>
-          <h2 className="text-3xl font-bold text-center text-gray-900">
-            Login
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Welcome back to your account
+  <div className="min-h-screen bg-black relative overflow-hidden flex flex-col">
+
+    {/* BACKGROUND GLOW */}
+    <div className="absolute inset-0 bg-gradient-to-br from-orange-600/20 via-black to-black"></div>
+
+    {/* HEADER — MIGRATION MIND LOGO */}
+    <header
+      className="relative z-10 w-full h-14 flex items-center px-8
+      bg-gradient-to-r from-black via-[#1a120d] to-black
+      border-b border-white/10"
+    >
+      <span className="text-white text-lg font-semibold tracking-wide">
+        Migration Mind
+      </span>
+    </header>
+
+    {/* MAIN CONTENT */}
+    <div className="relative z-10 flex-1 flex items-center justify-center px-8">
+      <div className="w-full max-w-6xl flex justify-between items-center">
+
+        {/* LEFT TEXT */}
+        <div className="text-white max-w-md">
+          <h1 className="text-4xl font-bold leading-tight">
+            Log In to Your <br />
+            <span className="text-orange-500">Account</span>
+          </h1>
+          <p className="text-gray-400 mt-4">
+            Unlock the full potential of your data.
           </p>
         </div>
 
-        {error && (
-          <div className="rounded-md bg-red-50 p-4 border border-red-200">
-            <p className="text-sm text-red-800">{error}</p>
-          </div>
-        )}
+        {/* RIGHT SIDE */}
+        <div className="flex flex-col items-center">
 
-        {info && (
-          <div className="rounded-md bg-blue-50 p-4 border border-blue-200">
-            <p className="text-sm text-blue-800">{info}</p>
-          </div>
-        )}
+          {/* LOGIN CARD */}
+          <div className="w-full max-w-sm bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl p-6 shadow-xl text-white">
+            <form onSubmit={handleSubmit} className="space-y-4">
 
-        {/* Social Auth Buttons */}
-        <div className="space-y-3">
-          <button
-            type="button"
-            onClick={handleGoogleLogin}
-            disabled={submitting}
-            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-100 disabled:cursor-not-allowed transition"
-          >
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-            Login with Google
-          </button>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 bg-black/40 border border-white/20 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+              />
 
-         
-        </div>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 bg-black/40 border border-white/20 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+              />
 
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white text-gray-500">Or continue with email</span>
-          </div>
-        </div>
+              {error && (
+                <p className="text-red-400 text-xs">{error}</p>
+              )}
 
-        <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email address
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              placeholder="Enter your email"
-            />
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full bg-orange-500 hover:bg-orange-600 transition text-black font-semibold py-2 rounded-md"
+              >
+                {submitting ? "Logging in..." : "Log In"}
+              </button>
+
+              <p className="text-xs text-center text-gray-300 mt-3">
+                Don’t have an account?{" "}
+                <a href="/signup" className="text-orange-400 hover:underline">
+                  Sign up
+                </a>
+              </p>
+            </form>
           </div>
 
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              value={formData.password}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              placeholder="Enter your password"
-            />
+          {/* GOOGLE / LINKEDIN — BOX ER BAIRE */}
+          <div className="flex gap-4 mt-4">
+            <button onClick={handleGoogleLogin} className="flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-md text-xs text-white hover:bg-white/20">
+              <img
+                src="https://s3-alpha.figma.com/hub/file/2729744958/2a5758d6-4edb-4047-87bb-e6b94dbbbab0-cover.png"
+                className="w-4 h-4"
+              />
+              Google
+            </button>
+
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-md text-xs text-white hover:bg-white/20">
+              <img
+                src="https://img.freepik.com/premium-vector/square-linkedin-logo-isolated-white-background_469489-892.jpg"
+                className="w-4 h-4"
+              />
+              LinkedIn
+            </button>
           </div>
 
-          <button
-            type="submit"
-            disabled={submitting}
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
-          >
-            {submitting ? 'Logging in...' : 'Login'}
-          </button>
-        </form>
-
-        <div className="text-center">
-          <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <a href="/signup" className="text-indigo-600 hover:text-indigo-500 font-medium">
-              Sign up
-            </a>
-          </p>
         </div>
       </div>
     </div>
-  );
+
+    {/* FOOTER — TERMS & PRIVACY */}
+    <footer className="relative z-10 text-gray-400 text-xs px-10 py-4 flex justify-between">
+      <div className="flex gap-4">
+        <a href="#" className="hover:text-white">Terms</a>
+        <a href="#" className="hover:text-white">Privacy</a>
+      </div>
+    </footer>
+
+  </div>
+);
+
 }
